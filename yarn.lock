@@ -5815,9 +5815,8 @@ react-is@^16.4.1:
   version "16.4.2"
   resolved "http://registry.npm.taobao.org/react-is/download/react-is-16.4.2.tgz#84891b56c2b6d9efdee577cc83501dfc5ecead88"
 
-react-native-web@^0.8.9:
+react-native-web@/Users/hujiao/Documents/github/react-native-web/packages/react-native-web:
   version "0.8.9"
-  resolved "http://registry.npm.taobao.org/react-native-web/download/react-native-web-0.8.9.tgz#0c616ce666a5547e2d850f15c2cc56abd14083ca"
   dependencies:
     array-find-index "^1.0.2"
     create-react-class "^15.6.2"

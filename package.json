@@ -13,7 +13,7 @@
     "react-art": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-native": "0.56.0",
-    "react-native-web": "^0.8.9"
+    "react-native-web": "/Users/hujiao/Documents/github/react-native-web/packages/react-native-web"
   },
   "devDependencies": {
     "babel-jest": "23.4.2",
