@@ -22,6 +22,8 @@ module.exports = {
                     loader: 'babel-loader',
                     options: {
                         cacheDirectory: true,
+                        babelrc: false,
+                        presets: ['react-app'],
                     },
                 }, ],
             },
