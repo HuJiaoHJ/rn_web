@@ -46,7 +46,7 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.json', '.android.js', '.ios.js'],
         alias: {
-            'react-native': 'react-native-web'
+            'react-native': path.resolve(appDir, 'react-native-web'),
         },
         modules: ['web_modules', 'node_modules'],
     },

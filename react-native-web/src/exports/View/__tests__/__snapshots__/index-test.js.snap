@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/View prop "hitSlop" handles partial offsets 1`] = `
+Object {
+  "top": "-10px",
+}
+`;
+
+exports[`components/View prop "hitSlop" renders a span with negative position offsets 1`] = `
+Object {
+  "bottom": "-10px",
+  "left": "-5px",
+  "right": "-5px",
+  "top": "-10px",
+}
+`;
