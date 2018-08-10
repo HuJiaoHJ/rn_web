@@ -16,10 +16,16 @@
     "react-native-web": "/Users/hujiao/Documents/github/react-native-web/packages/react-native-web"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.6",
     "babel-jest": "23.4.2",
     "babel-loader": "^7.1.5",
     "babel-preset-react-app": "^3.1.2",
     "babel-preset-react-native": "^5",
+    "eslint": "^5.3.0",
+    "eslint-plugin-flowtype": "^2.50.0",
+    "flow": "^0.2.3",
+    "flow-bin": "^0.78.0",
+    "flowtype": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
     "jest": "23.4.2",
     "react-test-renderer": "16.4.1",
