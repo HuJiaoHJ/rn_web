@@ -65,6 +65,8 @@ class Text extends Component<*> {
       otherProps.onKeyDown = this._createEnterHandler(onPress);
     }
 
+    const webSpecialProps = {};
+
     // allow browsers to automatically infer the language writing direction
     otherProps.dir = dir !== undefined ? dir : 'auto';
     otherProps.style = [
@@ -76,7 +78,19 @@ class Text extends Component<*> {
       onPress && styles.pressable
     ];
 
+    if (numberOfLines > 1) {
+      webSpecialProps.style = {
+        display: '-webkit-box',
+        WebkitBoxOrient: 'vertical',
+        WebkitLineClamp: numberOfLines,
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+      }
+    }
+
     const component = isInAParentText ? 'span' : 'div';
+
+    otherProps.webSpecialProps = webSpecialProps;
 
     return createElement(component, otherProps);
   }
@@ -132,7 +146,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap'
-  }
+  },
 });
 
 export default applyLayout(applyNativeMethods(Text));

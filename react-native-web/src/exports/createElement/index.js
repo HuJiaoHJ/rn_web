@@ -100,14 +100,19 @@ const adjustProps = domProps => {
  * 处理 props，得到转换成web的props，调用 React.createElement 方法
  */
 const createElement = (component, props, ...children) => {
+  const webSpecialProps = props.webSpecialProps;
+  delete props.webSpecialProps;
   // use equivalent platform elements where possible
   let accessibilityComponent;
   if (component && component.constructor === String) {
     accessibilityComponent = AccessibilityUtil.propsToAccessibilityComponent(props);
   }
   const Component = accessibilityComponent || component;
-  const domProps = createDOMProps(Component, props);
+  let domProps = createDOMProps(Component, props);
   adjustProps(domProps);
+  if (webSpecialProps) {
+    domProps = Object.assign(domProps, webSpecialProps);
+  }
   return React.createElement(Component, domProps, ...children);
 };
 
