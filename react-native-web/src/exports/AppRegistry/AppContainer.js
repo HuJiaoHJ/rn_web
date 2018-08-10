@@ -68,7 +68,6 @@ export default class AppContainer extends Component<Props, State> {
     if (WrapperComponent) {
       innerView = <WrapperComponent>{innerView}</WrapperComponent>;
     }
-    // AppContainer 两个View组件嵌套的组件，且给每个View组件初始化一些属性，如style
     return (
       <View pointerEvents="box-none" style={styles.appContainer}>
         {innerView}

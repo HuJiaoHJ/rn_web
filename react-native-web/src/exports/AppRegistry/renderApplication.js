@@ -37,12 +37,7 @@ export default function renderApplication<Props: Object>(
 ) {
   invariant(rootTag, 'Expect to have a valid rootTag, instead got ', rootTag);
   /**
-   * ReactDOM.render(React.createElement(App, null), document.getElementById('root'));
-   * React.createElement(type, config, children)
-   * type: 组件的构建函数
-   * config: 组件配置，如props等
-   * 
-   * AppContainer：两个View组件嵌套的组件
+   * ReactDOM.render(<App/>, document.getElementById('root'), callback);
    */
   renderFn(
     <AppContainer WrapperComponent={WrapperComponent} rootTag={rootTag}>
