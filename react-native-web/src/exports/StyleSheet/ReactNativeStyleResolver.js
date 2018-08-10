@@ -54,9 +54,11 @@ export default class ReactNativeStyleResolver {
       Object.keys(domStyle).forEach(styleProp => {
         const value = domStyle[styleProp];
         if (value != null) {
+          // 将样式插入webStyleSheet中
           this.styleSheetManager.injectDeclaration(styleProp, value);
         }
       });
+      // 将此样式标记为已插入
       this.injectedCache[dir][id] = true;
     }
   }
@@ -70,6 +72,7 @@ export default class ReactNativeStyleResolver {
     }
 
     // fast and cachable
+    // style是一个id
     if (typeof style === 'number') {
       this._injectRegisteredStyle(style);
       const key = createCacheKey(style);
@@ -77,6 +80,7 @@ export default class ReactNativeStyleResolver {
     }
 
     // resolve a plain RN style object
+    // style不是数组，也不是样式对应的id，而是一条样式属性
     if (!Array.isArray(style)) {
       return this._resolveStyleIfNeeded(style);
     }
@@ -85,7 +89,6 @@ export default class ReactNativeStyleResolver {
     // cache resolved props when all styles are registered
     // otherwise fallback to resolving
     const flatArray = flattenArray(style);
-    console.log(flatArray);
     let isArrayOfNumbers = true;
     for (let i = 0; i < flatArray.length; i++) {
       const id = flatArray[i];
@@ -152,20 +155,25 @@ export default class ReactNativeStyleResolver {
    * Resolves a React Native style object
    */
   _resolveStyle(style) {
+    // 获取对应的样式属性对象
     const flatStyle = flattenStyle(style);
+    // 对样式进行格式化：排序、单位px、颜色值、特殊属性处理，返回格式化之后的对象
     const domStyle = createReactDOMStyle(i18nStyle(flatStyle));
 
     const props = Object.keys(domStyle).reduce(
       (props, styleProp) => {
         const value = domStyle[styleProp];
         if (value != null) {
+          // 获取webStyleSheet中特定样式属性及值对应的className
           const className = this.styleSheetManager.getClassName(styleProp, value);
           if (className) {
+            // 将此className放入props.classList中
             props.classList.push(className);
           } else {
             // Certain properties and values are not transformed by 'createReactDOMStyle' as they
             // require more complex transforms into multiple CSS rules. Here we assume that StyleManager
             // can bind these styles to a className, and prevent them becoming invalid inline-styles.
+            // 单条样式属性，如果不是特殊属性，则直接放进props.style中
             if (
               styleProp === 'pointerEvents' ||
               styleProp === 'placeholderTextColor' ||

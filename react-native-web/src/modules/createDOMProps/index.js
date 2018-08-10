@@ -171,7 +171,6 @@ const createDOMProps = (component, props, styleResolver) => {
   if (testID && testID.constructor === String) {
     domProps['data-testid'] = testID;
   }
-
   return domProps;
 };
 

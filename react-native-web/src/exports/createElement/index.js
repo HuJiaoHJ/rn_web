@@ -108,10 +108,12 @@ const createElement = (component, props, ...children) => {
     accessibilityComponent = AccessibilityUtil.propsToAccessibilityComponent(props);
   }
   const Component = accessibilityComponent || component;
+  // 主要工作量在这！！！
   let domProps = createDOMProps(Component, props);
   adjustProps(domProps);
+
   if (webSpecialProps) {
-    domProps = Object.assign(domProps, webSpecialProps);
+    domProps = Object.assign(domProps, { ...webSpecialProps });
   }
   return React.createElement(Component, domProps, ...children);
 };

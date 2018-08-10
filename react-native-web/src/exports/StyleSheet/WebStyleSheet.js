@@ -59,6 +59,7 @@ export default class WebStyleSheet {
       // doesn't include styles injected via 'insertRule')
       if (this._textContent.indexOf(rule) === -1 && this._sheet) {
         const pos = position || this._sheet.cssRules.length;
+        // $0.sheet.insertRule('.test{ color: red }')
         this._sheet.insertRule(rule, pos);
       }
     }
