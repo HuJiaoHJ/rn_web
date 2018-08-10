@@ -19,9 +19,17 @@ import View from '../View';
 import { any, node } from 'prop-types';
 import React, { Component } from 'react';
 
+/**
+ * ReactDOM.render(React.createElement(
+    AppContainer,
+    { WrapperComponent: WrapperComponent, rootTag: rootTag },
+    React.createElement(RootComponent, initialProps)
+  ), rootTag, callback);
+ */
 var AppContainer = function (_Component) {
   _inherits(AppContainer, _Component);
 
+  // AppContainer构造函数
   function AppContainer() {
     var _temp, _this, _ret;
 
@@ -39,7 +47,7 @@ var AppContainer = function (_Component) {
       rootTag: this.props.rootTag
     };
   };
-
+  // 关注render方法
   AppContainer.prototype.render = function render() {
     var _props = this.props,
         children = _props.children,
@@ -59,7 +67,7 @@ var AppContainer = function (_Component) {
         innerView
       );
     }
-
+    // AppContainer 两个View组件嵌套的组件，且给每个View组件初始化一些属性，如style
     return React.createElement(
       View,
       { pointerEvents: 'box-none', style: styles.appContainer },
@@ -83,6 +91,6 @@ AppContainer.propTypes = process.env.NODE_ENV !== "production" ? {
 
 var styles = StyleSheet.create({
   appContainer: {
-    flex: 1
+    flex: 1,
   }
 });

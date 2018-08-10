@@ -40,13 +40,25 @@ var AppRegistry = function () {
 
     return runnables[appKey].getApplication(appParameters);
   };
-
+  /**
+   * 组件注册，对应RN的 AppRegistry.registerComponent 方法（TODO: 看一下RN的这个方法做了什么）
+   * eg: AppRegistry.registerComponent('rn_web', () => App);
+   */
   AppRegistry.registerComponent = function registerComponent(appKey, componentProvider) {
     runnables[appKey] = {
       getApplication: function getApplication(appParameters) {
         return _getApplication(componentProviderInstrumentationHook(componentProvider), appParameters ? appParameters.initialProps : emptyObject, wrapperComponentProvider && wrapperComponentProvider(appParameters));
       },
       run: function run(appParameters) {
+        /**
+         * componentProvider: () => App
+         * componentProviderInstrumentationHook(componentProvider): App
+         * initialProps: 模拟native给RN注入props
+         * rootTag: 根节点（DOM）
+         * wrapperComponentProvider(TODO: ?)
+         * callback: 回调
+         */
+        // renderApplication 最后是调用ReactDOM.render方法
         return renderApplication(componentProviderInstrumentationHook(componentProvider), appParameters.initialProps || emptyObject, appParameters.rootTag, wrapperComponentProvider && wrapperComponentProvider(appParameters), appParameters.callback);
       }
     };
@@ -75,7 +87,12 @@ var AppRegistry = function () {
     runnables[appKey] = { run: run };
     return appKey;
   };
-
+  /**
+   * 在注册组件之后调用此方法
+  AppRegistry.runApplication('rn_web', {
+    rootTag: document.getElementById('react-root')
+  });
+   */
   AppRegistry.runApplication = function runApplication(appKey, appParameters) {
     var isDevelopment = process.env.NODE_ENV !== 'production';
     if (isDevelopment) {
