@@ -28,6 +28,13 @@ type State = {
   mainKey: number
 };
 
+/**
+ * ReactDOM.render(React.createElement(
+    AppContainer,
+    { WrapperComponent: WrapperComponent, rootTag: rootTag },
+    React.createElement(RootComponent, initialProps)
+  ), rootTag, callback);
+ */
 export default class AppContainer extends Component<Props, State> {
   state = { mainKey: 1 };
 
@@ -46,7 +53,7 @@ export default class AppContainer extends Component<Props, State> {
       rootTag: this.props.rootTag
     };
   }
-
+  // 关注render方法
   render() {
     const { children, WrapperComponent } = this.props;
     let innerView = (
@@ -61,7 +68,7 @@ export default class AppContainer extends Component<Props, State> {
     if (WrapperComponent) {
       innerView = <WrapperComponent>{innerView}</WrapperComponent>;
     }
-
+    // AppContainer 两个View组件嵌套的组件，且给每个View组件初始化一些属性，如style
     return (
       <View pointerEvents="box-none" style={styles.appContainer}>
         {innerView}

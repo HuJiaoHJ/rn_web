@@ -15,8 +15,19 @@ import render from '../render';
 import styleResolver from '../StyleSheet/styleResolver';
 import React, { type ComponentType } from 'react';
 
+/**
+ * import { render, hydrate } from 'react-dom'
+ * 这也是为什么引入react-native-web需要安装react-dom
+ */
 const renderFn = process.env.NODE_ENV !== 'production' ? render : hydrate;
 
+/**
+ * RootComponent: 根组件（APP）
+ * initialProps: 模拟native给RN注入props
+ * rootTag: 根节点(DOM)
+ * WrapperComponent(TODO: ?)
+ * callback: 回调
+ */
 export default function renderApplication<Props: Object>(
   RootComponent: ComponentType<Props>,
   initialProps: Props,
@@ -25,7 +36,14 @@ export default function renderApplication<Props: Object>(
   callback?: () => void
 ) {
   invariant(rootTag, 'Expect to have a valid rootTag, instead got ', rootTag);
-
+  /**
+   * ReactDOM.render(React.createElement(App, null), document.getElementById('root'));
+   * React.createElement(type, config, children)
+   * type: 组件的构建函数
+   * config: 组件配置，如props等
+   * 
+   * AppContainer：两个View组件嵌套的组件
+   */
   renderFn(
     <AppContainer WrapperComponent={WrapperComponent} rootTag={rootTag}>
       <RootComponent {...initialProps} />
