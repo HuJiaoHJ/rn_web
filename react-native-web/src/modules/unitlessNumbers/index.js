@@ -1,7 +1,7 @@
 /**
  * @flow
  */
-
+// 不需要添加单位的属性列表
 const unitlessNumbers = {
   animationIterationCount: true,
   borderImageOutset: true,

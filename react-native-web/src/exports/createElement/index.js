@@ -92,7 +92,13 @@ const adjustProps = domProps => {
     };
   }
 };
-
+/**
+ * createElement('div', supportedProps);
+ * @param {*} component 
+ * @param {*} props (children在props中)
+ * @param {*} children 
+ * 处理 props，得到转换成web的props，调用 React.createElement 方法
+ */
 const createElement = (component, props, ...children) => {
   // use equivalent platform elements where possible
   let accessibilityComponent;

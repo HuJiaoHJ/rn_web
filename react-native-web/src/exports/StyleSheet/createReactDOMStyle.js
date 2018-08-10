@@ -155,17 +155,20 @@ const createReducer = (style, styleProps) => {
   let hasResolvedShadow = false;
   let hasResolvedTextDecoration = false;
   let hasResolvedTextShadow = false;
-
+  // accumulator, currentValue
   return (resolvedStyle, prop) => {
+    // 添加单位：value = `${value}px`;
     let value = normalizeValue(prop, style[prop]);
 
     // Make sure the default border width is explicitly set to '0' to avoid
     // falling back to any unwanted user-agent styles.
+    // 确保默认的 border width 被设置为0
     if (borderWidthProps[prop]) {
       value = value == null ? normalizeValue(null, 0) : value;
     }
 
     // Normalize color values
+    // 标准 color 值
     if (colorProps[prop]) {
       value = normalizeColor(value);
     }
@@ -316,8 +319,12 @@ const createReactDOMStyle = style => {
     return emptyObject;
   }
   const styleProps = Object.keys(style);
+  // 对样式进行排序
   const sortedStyleProps = alphaSortProps(styleProps);
+  // 创建reducer
   const reducer = createReducer(style, styleProps);
+  // 遍历style，进行单位px、颜色值、特定样式属性处理，返回格式化之后的样式对象
+  // resolvedStyle 初始值 {}
   const resolvedStyle = sortedStyleProps.reduce(reducer, {});
   return resolvedStyle;
 };

@@ -47,7 +47,9 @@ export default class ReactNativeStyleResolver {
     const { doLeftAndRightSwapInRTL, isRTL } = I18nManager;
     const dir = isRTL ? (doLeftAndRightSwapInRTL ? 'rtl' : 'rtlNoSwap') : 'ltr';
     if (!this.injectedCache[dir][id]) {
+      // 根据id获取对应的style对象
       const style = flattenStyle(id);
+      // 对样式对象格式化：各样式属性排序；单位px、颜色值、特定属性处理，返回格式化之后的样式对象
       const domStyle = createReactDOMStyle(i18nStyle(style));
       Object.keys(domStyle).forEach(styleProp => {
         const value = domStyle[styleProp];
@@ -83,6 +85,7 @@ export default class ReactNativeStyleResolver {
     // cache resolved props when all styles are registered
     // otherwise fallback to resolving
     const flatArray = flattenArray(style);
+    console.log(flatArray);
     let isArrayOfNumbers = true;
     for (let i = 0; i < flatArray.length; i++) {
       const id = flatArray[i];

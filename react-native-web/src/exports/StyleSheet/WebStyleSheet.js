@@ -10,11 +10,15 @@
 import { canUseDOM } from 'fbjs/lib/ExecutionEnvironment';
 import modality from './modality';
 
+/**
+ * 页面样式表管理：style标签初始化、新增样式、获取样式
+ */
 export default class WebStyleSheet {
   _cssRules = [];
   _sheet = null;
   _textContent = '';
 
+  // id: STYLE_ELEMENT_ID = 'react-native-stylesheet'
   constructor(id: string) {
     let domStyleElement;
 

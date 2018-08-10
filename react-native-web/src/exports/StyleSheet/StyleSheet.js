@@ -30,6 +30,10 @@ const StyleSheet = {
       return style1 || style2;
     }
   },
+  /**
+   * StyleSheet.create(styles) 将各样式对象进行存储，返回对应id
+   * @param {*} styles 
+   */
   create(styles) {
     const result = {};
     Object.keys(styles).forEach(key => {
