@@ -17,6 +17,7 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 include: [
                     path.resolve(appDir, 'src'),
+                    path.resolve(appDir, 'react-native-web'),
                 ],
                 use: [{
                     loader: 'babel-loader',
