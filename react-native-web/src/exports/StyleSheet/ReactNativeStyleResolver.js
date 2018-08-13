@@ -165,6 +165,7 @@ export default class ReactNativeStyleResolver {
         const value = domStyle[styleProp];
         if (value != null) {
           // 获取webStyleSheet中特定样式属性及值对应的className
+          // 通过StyleSheet.create创建的样式，会插入到webStyleSheet
           const className = this.styleSheetManager.getClassName(styleProp, value);
           if (className) {
             // 将此className放入props.classList中
@@ -174,6 +175,7 @@ export default class ReactNativeStyleResolver {
             // require more complex transforms into multiple CSS rules. Here we assume that StyleManager
             // can bind these styles to a className, and prevent them becoming invalid inline-styles.
             // 单条样式属性，如果不是特殊属性，则直接放进props.style中
+            // 单条样式属性是指未通过StyleSheet.create创建的样式
             if (
               styleProp === 'pointerEvents' ||
               styleProp === 'placeholderTextColor' ||
