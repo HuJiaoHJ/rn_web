@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const appDir = path.resolve(__dirname, '../');
 
@@ -42,7 +43,10 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(appDir, 'index.html'),
-        })
+        }),
+        new BundleAnalyzerPlugin({
+            analyzerMode: 'static',
+        }),
     ],
     resolve: {
         extensions: ['.js', '.json', '.android.js', '.ios.js'],
