@@ -46,6 +46,7 @@ module.exports = {
         }),
         new BundleAnalyzerPlugin({
             analyzerMode: 'static',
+            openAnalyzer: false,
         }),
     ],
     resolve: {
