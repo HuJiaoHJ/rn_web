@@ -23,7 +23,7 @@ export default class App extends Component {
         <Text style={styles.welcome}>Welcome to React Native!</Text>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
         <Text style={styles.instructions}>{instructions}</Text>
-        <Text style={styles.ellipsis} numberOfLines={3}>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</Text>
+        <Text style={styles.ellipsis} numberOfLines={2}>多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略</Text>
       </View>
     );
   }
@@ -50,3 +50,5 @@ const styles = StyleSheet.create({
     width: 200,
   }
 });
+
+console.log(styles);

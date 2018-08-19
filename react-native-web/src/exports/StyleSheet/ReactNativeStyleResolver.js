@@ -49,7 +49,7 @@ export default class ReactNativeStyleResolver {
     if (!this.injectedCache[dir][id]) {
       // 根据id获取对应的style对象
       const style = flattenStyle(id);
-      // 对样式对象格式化：各样式属性排序；单位px、颜色值、特定属性处理，返回格式化之后的样式对象
+      // 对样式对象格式化：各样式属性排序；添加长度单位；颜色值处理；特定属性处理；返回格式化之后的样式对象
       const domStyle = createReactDOMStyle(i18nStyle(style));
       Object.keys(domStyle).forEach(styleProp => {
         const value = domStyle[styleProp];
@@ -155,9 +155,9 @@ export default class ReactNativeStyleResolver {
    * Resolves a React Native style object
    */
   _resolveStyle(style) {
-    // 获取对应的样式属性对象
+    // 获取对应id的样式对象
     const flatStyle = flattenStyle(style);
-    // 对样式进行格式化：排序、单位px、颜色值、特殊属性处理，返回格式化之后的对象
+    // 对样式对象格式化：各样式属性排序；添加长度单位；颜色值处理；特定属性处理；返回格式化之后的样式对象
     const domStyle = createReactDOMStyle(i18nStyle(flatStyle));
 
     const props = Object.keys(domStyle).reduce(

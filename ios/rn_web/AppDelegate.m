@@ -16,7 +16,12 @@
 {
   NSURL *jsCodeLocation;
 
+  // 生成 bundle URL
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+  
+  NSLog(@"jsCodeLocation is: %@\n", jsCodeLocation);
+  
+  NSLog(@"nil is: %@\n", nil);
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"rn_web"
