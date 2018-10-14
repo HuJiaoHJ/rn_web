@@ -9,6 +9,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "autoprefixer": "^9.1.5",
+    "postcss-js": "^2.0.0",
     "react": "^16.4.2",
     "react-art": "^16.4.2",
     "react-dom": "^16.4.2",
